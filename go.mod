@@ -1,4 +1,4 @@
-module mcp-request
+module github.com/pengcunfu/go-mcp-request
 
 go 1.23.2
 
