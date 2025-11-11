@@ -25,6 +25,12 @@ jobs:
           - goos: linux
             goarch: arm64
             ext: ""
+          - goos: darwin
+            goarch: amd64
+            ext: ""
+          - goos: darwin
+            goarch: arm64
+            ext: ""
 
     steps:
     - name: 检出代码
@@ -78,10 +84,12 @@ jobs:
           dist/mcp-request-linux-arm64/mcp-request-linux-arm64
           dist/mcp-request-windows-amd64/mcp-request-windows-amd64.exe
           dist/mcp-request-windows-arm64/mcp-request-windows-arm64.exe
+          dist/mcp-request-darwin-amd64/mcp-request-darwin-amd64
+          dist/mcp-request-darwin-arm64/mcp-request-darwin-arm64
         body: |
-          ## MCP HTTP 请求工具 ${{ github.ref_name }}
+          ## 🚀 MCP HTTP 请求工具 ${{ github.ref_name }}
           
-          ### 下载
+          ### 📦 下载
           
           **Windows:**
           - [mcp-request-windows-amd64.exe](https://github.com/pengcunfu/go-mcp-request/releases/download/${{ github.ref_name }}/mcp-request-windows-amd64.exe) - Windows x64
@@ -91,16 +99,30 @@ jobs:
           - [mcp-request-linux-amd64](https://github.com/pengcunfu/go-mcp-request/releases/download/${{ github.ref_name }}/mcp-request-linux-amd64) - Linux x64
           - [mcp-request-linux-arm64](https://github.com/pengcunfu/go-mcp-request/releases/download/${{ github.ref_name }}/mcp-request-linux-arm64) - Linux ARM64
           
-          ### 安装说明
+          **macOS:**
+          - [mcp-request-darwin-amd64](https://github.com/pengcunfu/go-mcp-request/releases/download/${{ github.ref_name }}/mcp-request-darwin-amd64) - macOS Intel (x64)
+          - [mcp-request-darwin-arm64](https://github.com/pengcunfu/go-mcp-request/releases/download/${{ github.ref_name }}/mcp-request-darwin-arm64) - macOS Apple Silicon (M1/M2/M3)
           
-          1. 下载适合你系统的二进制文件
-          2. 将文件重命名为 `mcp-request` (Linux) 或 `mcp-request.exe` (Windows)
+          ### 📝 安装说明
+          
+          **Windows:**
+          1. 下载 `.exe` 文件
+          2. 将文件重命名为 `mcp-request.exe`
           3. 将文件放到PATH环境变量中的目录
-          4. Linux用户需要添加执行权限: `chmod +x mcp-request`
           
-          ### 使用方法
+          **Linux/macOS:**
+          1. 下载对应的二进制文件
+          2. 添加执行权限: `chmod +x mcp-request-*`
+          3. 重命名: `mv mcp-request-* mcp-request`
+          4. 移动到PATH目录: `sudo mv mcp-request /usr/local/bin/`
           
-          请参考 [README.md](https://github.com/pengcunfu/go-mcp-request/blob/master/README.md) 了解详细使用方法。
+          ### 📖 使用方法
+          
+          请参考 [README.md](https://github.com/pengcunfu/go-mcp-request/blob/master/README.md) 或 [README_EN.md](https://github.com/pengcunfu/go-mcp-request/blob/master/README_EN.md) 了解详细使用方法。
+          
+          ### 📄 许可证
+          
+          本项目采用 [Apache License 2.0](https://github.com/pengcunfu/go-mcp-request/blob/master/LICENSE) 开源协议。
         draft: false
         prerelease: false
         token: ${{ secrets.GITHUB_TOKEN }}
